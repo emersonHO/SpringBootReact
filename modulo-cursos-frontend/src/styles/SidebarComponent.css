@@ -1,0 +1,84 @@
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.user-info {
+    text-align: center;
+}
+
+.user-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-details p {
+    margin: 5px 0;
+}
+
+.nav-links {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.nav-links li {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a:hover {
+    background-color: #495057;
+}
+
+.nav-links svg {
+    margin-right: 10px;
+}
+
+.courses-link {
+    cursor: pointer;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sub-menu {
+    list-style-type: none;
+    padding: 0;
+    padding-left: 20px;
+    margin: 0;
+    background-color: #495057;
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.sub-menu li {
+    margin: 5px 0;
+}
+
+.sub-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+    display: block;
+}
+
+.sub-menu a:hover {
+    background-color: #6c757d;
+}
