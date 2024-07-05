@@ -20,12 +20,15 @@ export const AddCursoComponent = () => {
     const [tipo,setTipo] = useState('');
     const [institucion_id,setInstitucion_id] = useState('');
     const [plan_estudios_id,setPlan_estudios_id] = useState('');
+    const [Dia, setDia] = useState('');
+    const [Hora_inicio, setHora_inicio] = useState('');
+    const [Hora_final, setHora_final] = useState('');
     const navigate = useNavigate();
     const {id} = useParams();
 
     const saveOrUpdateCurso = (e) => {
         e.preventDefault();
-        const curso = {ciclo, codigo, departamento_id, estado, modalidad, nombre, num_creditos, num_horas_campo, num_horas_laboratorio, num_horas_practica, num_horas_teoria, periodo_academico_id, sumilla, tipo, institucion_id, plan_estudios_id};
+        const curso = {ciclo, codigo, departamento_id, estado, modalidad, nombre, num_creditos, num_horas_campo, num_horas_laboratorio, num_horas_practica, num_horas_teoria, periodo_academico_id, sumilla, tipo, institucion_id, plan_estudios_id, dia, hora_inicio, hora_final};
         
         if(id){
             CursoService.updateCurso(id, curso).then((response) => {
@@ -63,6 +66,9 @@ export const AddCursoComponent = () => {
             setPlan_estudios_id(response.data.plan_estudios_id);
             setSumilla(response.data.sumilla);
             setTipo(response.data.tipo);
+            setDia(response.data.dia);
+            setHora_inicio(response.data.Hora_inicio);
+            setHora_final(response.data.Hora_final);
         }).catch(error => {
             console.log(error);
         })
@@ -181,6 +187,39 @@ export const AddCursoComponent = () => {
                                     className="form-control"
                                     value={ num_horas_teoria }
                                     onChange={(e) => setNum_horas_teoria(e.target.value)}                                
+                                />
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Día</label>
+                                <input
+                                    type="text"
+                                    placeholder="Digite el día que se dictara"
+                                    name="Dia"
+                                    className="form-control"
+                                    value={ Dia }
+                                    onChange={(e) => setDia(e.target.value)}                                
+                                />
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Hora de inicio</label>
+                                <input
+                                    type="text"
+                                    placeholder="Digite la hora de inicio del curso"
+                                    name="Hora_inicio"
+                                    className="form-control"
+                                    value={ Hora_inicio }
+                                    onChange={(e) => setHora_inicio(e.target.value)}                                
+                                />
+                            </div>
+                            <div className="form-group mb-2">
+                                <label className="form-label">Hora de fin</label>
+                                <input
+                                    type="text"
+                                    placeholder="Digite la hora de fin de curso"
+                                    name="Hora_fin"
+                                    className="form-control"
+                                    value={ Hora_final }
+                                    onChange={(e) => setHora_fin(e.target.value)}                                
                                 />
                             </div>
                             <div className="form-group mb-2">

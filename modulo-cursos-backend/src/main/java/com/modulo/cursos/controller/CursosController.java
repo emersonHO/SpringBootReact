@@ -57,7 +57,9 @@ public class CursosController {
         curso.setNum_horas_teoria(cursoRequest.getNum_horas_teoria());
         curso.setPeriodo_academico_id(cursoRequest.getPeriodo_academico_id());
         curso.setPlan_estudios_id(cursoRequest.getPlan_estudios_id());
-
+        curso.setDia(cursoRequest.getDia());
+        curso.setHora_inicio(cursoRequest.getHora_inicio());
+        curso.setHora_fin(cursoRequest.getHora_fin());
         Curso cursoActualizado = cursoRepository.save(curso);
         return ResponseEntity.ok(cursoActualizado);
     }

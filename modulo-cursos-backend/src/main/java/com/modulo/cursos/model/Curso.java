@@ -65,4 +65,13 @@ public class Curso{
     @Column(name = "departamento_id")
     private long departamento_id;
 
+    @Column(name = "Dia")
+    private long Dia;
+
+    @Column(name = "hora_inicio")
+    private long hora_inicio;
+
+    @Column(name = "hora_fin")
+    private long hora_fin;
+
 }
