@@ -20,9 +20,9 @@ export const AddCursoComponent = () => {
     const [tipo,setTipo] = useState('');
     const [institucion_id,setInstitucion_id] = useState('');
     const [plan_estudios_id,setPlan_estudios_id] = useState('');
-    const [Dia, setDia] = useState('');
-    const [Hora_inicio, setHora_inicio] = useState('');
-    const [Hora_final, setHora_final] = useState('');
+    const [dia, setDia] = useState('');
+    const [hora_inicio, setHora_inicio] = useState('');
+    const [hora_final, setHora_final] = useState('');
     const navigate = useNavigate();
     const {id} = useParams();
 
@@ -196,7 +196,7 @@ export const AddCursoComponent = () => {
                                     placeholder="Digite el día que se dictara"
                                     name="Dia"
                                     className="form-control"
-                                    value={ Dia }
+                                    value={ dia }
                                     onChange={(e) => setDia(e.target.value)}                                
                                 />
                             </div>
@@ -207,7 +207,7 @@ export const AddCursoComponent = () => {
                                     placeholder="Digite la hora de inicio del curso"
                                     name="Hora_inicio"
                                     className="form-control"
-                                    value={ Hora_inicio }
+                                    value={ hora_inicio }
                                     onChange={(e) => setHora_inicio(e.target.value)}                                
                                 />
                             </div>
@@ -218,8 +218,8 @@ export const AddCursoComponent = () => {
                                     placeholder="Digite la hora de fin de curso"
                                     name="Hora_fin"
                                     className="form-control"
-                                    value={ Hora_final }
-                                    onChange={(e) => setHora_fin(e.target.value)}                                
+                                    value={ hora_final }
+                                    onChange={(e) => setHora_final(e.target.value)}                                
                                 />
                             </div>
                             <div className="form-group mb-2">
