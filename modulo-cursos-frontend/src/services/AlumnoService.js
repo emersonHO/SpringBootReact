@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const ALUMNO_API_BASE_URL = "http://localhost:8080/api/v1/alumnos";
-const CURSO_ALUMNOS_API_BASE_URL = "http://localhost:8080/api/v1/cursos";
+const ALUMNO_API_BASE_URL = "https://springbootreact-7w44.onrender.com/api/v1/alumnos";
+const CURSO_ALUMNOS_API_BASE_URL = "https://springbootreact-7w44.onrender.com/api/v1/cursos";
 
 class AlumnoService {
     getAlumnos() {

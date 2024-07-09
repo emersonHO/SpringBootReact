@@ -1,7 +1,7 @@
 import axios from "axios"
 import { renderToReadableStream } from "react-dom/server";
 
-const CURSOS_BASE_REST_API_URL ="http://localhost:8080/api/v1/cursos"
+const CURSOS_BASE_REST_API_URL ="https://springbootreact-7w44.onrender.com/api/v1/cursos"
 
 class CursoService{
 
