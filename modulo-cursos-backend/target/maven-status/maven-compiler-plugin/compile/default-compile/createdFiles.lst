@@ -1,5 +1,7 @@
+com\modulo\cursos\service\AlumnoCursoService.class
 com\modulo\cursos\service\FormulaService.class
 com\modulo\cursos\repository\ICursoRepository.class
+com\modulo\cursos\service\AlumnoService.class
 com\modulo\cursos\model\Formula.class
 com\modulo\cursos\ModuloCursosBackendApplication.class
 com\modulo\cursos\controller\AlumnoCursoController.class

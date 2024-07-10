@@ -10,6 +10,7 @@ const ListAlumnosComponent = () => {
         try {
             const response = await AlumnoService.getAllAlumnosByCursoId(cursoId);
             setAlumnos(response.data);
+            console.log(alumnos);
         } catch (error) {
             console.error('Error fetching alumnos:', error);
         }

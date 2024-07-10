@@ -1,5 +1,6 @@
 package com.modulo.cursos.controller;
 
+import com.modulo.cursos.model.Alumno;
 import com.modulo.cursos.model.Curso;
 import com.modulo.cursos.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;

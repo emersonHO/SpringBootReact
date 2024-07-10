@@ -38,4 +38,8 @@ public class Alumno{
 
     @Column(name = "usuario_id")
     private long usuario_id;
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 }

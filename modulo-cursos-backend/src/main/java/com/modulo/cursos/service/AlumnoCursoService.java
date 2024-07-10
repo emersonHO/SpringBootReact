@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AlumnoCursoService {
@@ -39,11 +40,16 @@ public class AlumnoCursoService {
         return alumnoCursoRepository.save(alumnoCurso);
     }
 
-    public List<AlumnoCurso> listarAlumnosPorCurso(Long cursoId) {
+    public List<Alumno> listarAlumnosPorCurso(Long cursoId) {
         Curso curso = cursoRepository.findById(cursoId)
                 .orElseThrow(() -> new ResourceNotFoundException("El curso con ese ID no existe: " + cursoId));
 
-        return alumnoCursoRepository.findByCurso(curso);
+        List<AlumnoCurso> alumnoCursos = alumnoCursoRepository.findByCurso(curso);
+
+        return alumnoCursos.stream()
+                .map(AlumnoCurso::getAlumno)
+                .collect(Collectors.toList());
     }
+
 }
 

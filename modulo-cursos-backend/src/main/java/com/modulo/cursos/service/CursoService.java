@@ -1,7 +1,9 @@
 package com.modulo.cursos.service;
 
 import com.modulo.cursos.exception.ResourceNotFoundException;
+import com.modulo.cursos.model.Alumno;
 import com.modulo.cursos.model.Curso;
+import com.modulo.cursos.repository.IAlumnoRepository;
 import com.modulo.cursos.repository.ICursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ public class CursoService {
 
     @Autowired
     private ICursoRepository cursoRepository;
+
+    @Autowired
+    private IAlumnoRepository alumnoRepository;
 
     public List<Curso> listarCursos() {
         return cursoRepository.findAll();
@@ -63,6 +68,10 @@ public class CursoService {
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return response;
+    }
+
+    public List<Alumno> listarAlumnosPorCursoId(Long cursoId) {
+        return alumnoRepository.findByCursoId(cursoId);
     }
 }
 

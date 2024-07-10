@@ -25,9 +25,9 @@ public class AlumnoCursoController {
         return ResponseEntity.ok(nuevoAlumnoCurso);
     }
 
-    @GetMapping("/cursos/{cursoId}/alumnos")
+   /* @GetMapping("/cursos/{cursoId}/alumnos")
     public ResponseEntity<List<AlumnoCurso>> listarAlumnosPorCurso(@PathVariable Long cursoId) {
         List<AlumnoCurso> alumnosDelCurso = alumnoCursoService.listarAlumnosPorCurso(cursoId);
         return ResponseEntity.ok(alumnosDelCurso);
-    }
+    }*/
 }
