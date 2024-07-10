@@ -1,37 +1,64 @@
-
 .calendario-container {
-    display: flex;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+input[type="date"] {
+  padding: 5px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+}
+
+.curso-card {
+  display: flex;
+  flex-direction: column; /* Mostrar contenido en columna */
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.curso-card h2 {
+  margin: 0 auto 10px; /* Centrar el título */
+  font-size: 20px;
+}
+
+.curso-card p {
+  margin: 5px 0;
+  text-align: left; /* Alinear texto a la derecha */
+}
+
+@media (max-width: 768px) {
+  .search-container {
     flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+    align-items: stretch; /* Alinear elementos a lo largo del eje principal */
   }
-  
-  .input-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
+
+  input[type="date"], button {
+    width: 100%;
+    margin: 5px 0;
   }
-  
-  .date-picker {
-    width: 250px;
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .search-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .search-button:hover {
-    background-color: #0056b3;
-  }
+}
