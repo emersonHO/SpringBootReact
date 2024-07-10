@@ -9,8 +9,10 @@ import CursoDetailsComponent from './components/CursoDetailsComponent';
 import SidebarComponent from './components/SidebarComponent';
 import FormulasComponent from './components/FormulasComponent';
 import CalendarioComponent from './components/CalendarioComponent';
-import ListAlumnosComponent from './components/ListAlumnosComponent'; // Importa el nuevo componente
+import ListAlumnosComponent from './components/ListAlumnosComponent';
 import AddAlumnoComponent from './components/AddAlumnoComponent';
+import ListFormulasComponent from './components/ListFormulasComponent';
+import AddFormulaComponent from './components/AddFormulaComponent';
 import './App.css';
 
 function App() {
@@ -32,6 +34,9 @@ function App() {
               <Route path="/cursos/:cursoId/alumnos" element={<ListAlumnosComponent />} />
               <Route path="/cursos/:cursoId/alumnos/add-alumno" element={<AddAlumnoComponent />} />
               <Route path="/cursos/:cursoId/alumnos/edit-alumno/:alumnoId" element={<AddAlumnoComponent />} />
+              <Route path="/cursos/:cursoId/formulas" element={<ListFormulasComponent />} />
+              <Route path="/cursos/:cursoId/formulas/add-formula" element={<AddFormulaComponent />} />
+              <Route path="/cursos/:cursoId/formulas/edit-formula/:formulaId" element={<AddFormulaComponent />} />
             </Routes>
           </div>
         </div>
