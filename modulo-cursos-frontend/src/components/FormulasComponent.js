@@ -30,8 +30,11 @@ export const FormulasComponent = () => {
     };
 
     const getInitials = (name) => {
+        if (!name) return ''; // Handle case where name is undefined or null
+    
         return name.split(' ').map(word => word[0]).join('');
     };
+    
 
     const handleCardClick = (cursoId) => {
         navigate(`/cursos/${cursoId}/formulas`);
