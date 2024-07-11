@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -17,61 +17,54 @@ public class Curso{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "codigo")
-    private String codigo;
+    @Column(name = "cod_asignatura")
+    private String cod_asignatura;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombre_asignatura")
+    private String nombre_asignatura;
 
-    @Column(name = "tipo")
-    private String tipo;
+    @Column(name = "tipo_asignatura")
+    private String tipo_asignatura;
+
+    @Column(name = "area_estudios")
+    private String area_estudios;
+
+    @Column(name = "numero_semanas")
+    private int numero_semanas;
+
+    @Column(name = "horas_semanales")
+    private int horas_semanales;
+
+    @Column(name = "semestre_academico")
+    private String semestre_academico;
 
     @Column(name = "ciclo")
-    private String ciclo;
+    private int ciclo;
 
-    @Column(name = "estado")
-    private String estado;
-
-    @Column(name = "sumilla")
-    private String sumilla;
+    @Column(name = "creditos")
+    private int creditos;
 
     @Column(name = "modalidad")
     private String modalidad;
 
-    @Column(name = "num_horas_teoria")
-    private int num_horas_teoria;
+    @Column(name = "prerequisitos")
+    private String prerequisitos;
 
-    @Column(name = "num_horas_practica")
-    private int num_horas_practica;
+    @Column(name = "sumilla")
+    private String sumilla;
 
-    @Column(name = "num_horas_laboratorio")
-    private int num_horas_laboratorio;
+    @Column(name = "evaluacion_aprendizaje")
+    private String evaluacion_aprendizaje;
 
-    @Column(name = "num_horas_campo")
-    private int num_horas_campo;
-
-    @Column(name = "num_creditos")
-    private int num_creditos;
-
-    @Column(name = "periodo_academico_id")
-    private long periodo_academico_id;
-
-    @Column(name = "plan_estudios_id")
-    private long plan_estudios_id;
-
-    @Column(name = "institucion_id")
-    private long institucion_id;
-
-    @Column(name = "departamento_id")
-    private long departamento_id;
-
-    @Column(name = "Dia")
-    private long Dia;
+    @Column(name = "dia")
+    private int dia;
 
     @Column(name = "hora_inicio")
-    private long hora_inicio;
+    private LocalTime hora_inicio;
 
     @Column(name = "hora_fin")
-    private long hora_fin;
+    private LocalTime hora_fin;
 
+    @Column(name= "codigo_plan")
+    private String codigo_plan;
 }

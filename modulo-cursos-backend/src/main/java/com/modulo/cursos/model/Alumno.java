@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data //geters and seters automaticos sin necesidad de tipearlos
-@Entity // para volver una entidad o modelo mi clase
-@Table(name = "alumno")//la tabla en la base de datos tiene un
-//nombre que inicia por minusculas, y aca
-//la clase inicia por mayusculas
+@Data
+@Entity
+@Table(name = "alumno")
+
 public class Alumno{
 
     @Id

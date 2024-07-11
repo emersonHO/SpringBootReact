@@ -3,312 +3,276 @@ import CursoService from "../services/CursoService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const AddCursoComponent = () => {
-
-    const [ciclo,setCiclo] = useState('');
-    const [codigo,setCodigo] = useState('');
-    const [departamento_id,setDepartamento_id] = useState('');
-    const [estado,setEstado] = useState('');
-    const [modalidad,setModalidad] = useState('');
-    const [nombre,setNombre] = useState('');
-    const [num_creditos,setNum_creditos] = useState('');
-    const [num_horas_campo,setNum_horas_campo] = useState('');
-    const [num_horas_laboratorio,setNum_horas_laboratorio] = useState('');
-    const [num_horas_practica,setNum_horas_practica] = useState('');
-    const [num_horas_teoria,setNum_horas_teoria] = useState('');
-    const [periodo_academico_id,setPeriodo_academico_id] = useState('');
-    const [sumilla,setSumilla] = useState('');
-    const [tipo,setTipo] = useState('');
-    const [institucion_id,setInstitucion_id] = useState('');
-    const [plan_estudios_id,setPlan_estudios_id] = useState('');
+    const [cod_asignatura, setCod_asignatura] = useState('');
+    const [nombre_asignatura, setNombre_asignatura] = useState('');
+    const [tipo_asignatura, setTipo_asignatura] = useState('');
+    const [area_estudios, setArea_estudios] = useState('');
+    const [numero_semanas, setNumero_semanas] = useState('');
+    const [horas_semanales, setHoras_semanales] = useState('');
+    const [semestre_academico, setSemestre_academico] = useState('');
+    const [ciclo, setCiclo] = useState('');
+    const [creditos, setCreditos] = useState('');
+    const [modalidad, setModalidad] = useState('');
+    const [prerequisitos, setPrerequisitos] = useState('');
+    const [sumilla, setSumilla] = useState('');
+    const [evaluacion_aprendizaje, setEvaluacion_aprendizaje] = useState('');
     const [dia, setDia] = useState('');
     const [hora_inicio, setHora_inicio] = useState('');
-    const [hora_final, setHora_final] = useState('');
+    const [hora_fin, setHora_fin] = useState('');
     const navigate = useNavigate();
-    const {id} = useParams();
+    const { id } = useParams();
 
     const saveOrUpdateCurso = (e) => {
         e.preventDefault();
-        const curso = {ciclo, codigo, departamento_id, estado, modalidad, nombre, num_creditos, num_horas_campo, num_horas_laboratorio, num_horas_practica, num_horas_teoria, periodo_academico_id, sumilla, tipo, institucion_id, plan_estudios_id, dia, hora_inicio, hora_final};
-        
-        if(id){
+        const curso = {
+            cod_asignatura, nombre_asignatura, tipo_asignatura, area_estudios, 
+            numero_semanas, horas_semanales, semestre_academico, ciclo, creditos, 
+            modalidad, prerequisitos, sumilla, evaluacion_aprendizaje, dia, 
+            hora_inicio, hora_fin
+        };
+
+        if (id) {
             CursoService.updateCurso(id, curso).then((response) => {
                 console.log(response.data);
                 navigate('/cursos');
             }).catch(error => {
                 console.log(error);
-            })
-        } else{
+            });
+        } else {
             CursoService.createCurso(curso).then((response) => {
                 console.log(response.data);
                 navigate('/cursos');
             }).catch(error => {
                 console.log(error);
-            })
+            });
         }
-                
-    }
+    };
 
     useEffect(() => {
-        CursoService.getCursoById(id).then((response) => {
-            setCodigo(response.data.codigo);
-            setNombre(response.data.nombre);
-            setCiclo(response.data.ciclo);
-            setDepartamento_id(response.data.departamento_id);
-            setEstado(response.data.estado);
-            setInstitucion_id(response.data.institucion_id);
-            setModalidad(response.data.modalidad);
-            setNum_creditos(response.data.num_creditos);
-            setNum_horas_campo(response.data.num_horas_campo);
-            setNum_horas_laboratorio(response.data.num_horas_laboratorio);
-            setNum_horas_practica(response.data.num_horas_practica);
-            setNum_horas_teoria(response.data.num_horas_teoria);
-            setPeriodo_academico_id(response.data.periodo_academico_id);
-            setPlan_estudios_id(response.data.plan_estudios_id);
-            setSumilla(response.data.sumilla);
-            setTipo(response.data.tipo);
-            setDia(response.data.dia);
-            setHora_inicio(response.data.Hora_inicio);
-            setHora_final(response.data.Hora_final);
-        }).catch(error => {
-            console.log(error);
-        })
-    }, [id])
+        if (id) {
+            CursoService.getCursoById(id).then((response) => {
+                setCod_asignatura(response.data.cod_asignatura);
+                setNombre_asignatura(response.data.nombre_asignatura);
+                setTipo_asignatura(response.data.tipo_asignatura);
+                setArea_estudios(response.data.area_estudios);
+                setNumero_semanas(response.data.numero_semanas);
+                setHoras_semanales(response.data.horas_semanales);
+                setSemestre_academico(response.data.semestre_academico);
+                setCiclo(response.data.ciclo);
+                setCreditos(response.data.creditos);
+                setModalidad(response.data.modalidad);
+                setPrerequisitos(response.data.prerequisitos);
+                setSumilla(response.data.sumilla);
+                setEvaluacion_aprendizaje(response.data.evaluacion_aprendizaje);
+                setDia(response.data.dia);
+                setHora_inicio(response.data.hora_inicio);
+                setHora_fin(response.data.hora_fin);
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+    }, [id]);
 
     const title = () => {
-        if(id){
-            return <h2 className="text-center">Actualizar curso</h2>
-        } else{
-            return <h2 className="text-center">Agregar curso</h2>
+        if (id) {
+            return <h2 className="text-center">Actualizar curso</h2>;
+        } else {
+            return <h2 className="text-center">Agregar curso</h2>;
         }
-    }
+    };
 
     return (
         <div>
             <div className="container">
                 <div className="row">
-                <div className="card col-md-6 offset-md-3 offset-md-3">
-                    <h2 className="text-center">{title()}</h2>
-                    <div className="card-body">
-                        <form>
-                        <div className="form-group mb-2">
-                                <label className="form-label">Código</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el código del curso"
-                                    name="codigo"
-                                    className="form-control"
-                                    value={ codigo }
-                                    onChange={(e) => setCodigo(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Nombre</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el nombre del curso"
-                                    name="nombre"
-                                    className="form-control"
-                                    value={ nombre }
-                                    onChange={(e) => setNombre(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Ciclo</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el ciclo del curso"
-                                    name="ciclo"
-                                    className="form-control"
-                                    value={ ciclo }
-                                    onChange={(e) => setCiclo(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Modalidad</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite la modalidad del curso"
-                                    name="modalidad"
-                                    className="form-control"
-                                    value={ modalidad }
-                                    onChange={(e) => setModalidad(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Creditos</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite los creditos del curso"
-                                    name="num_creditos"
-                                    className="form-control"
-                                    value={ num_creditos }
-                                    onChange={(e) => setNum_creditos(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Horas de Campo</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el número horas de campo del curso"
-                                    name="num_horas_campo"
-                                    className="form-control"
-                                    value={ num_horas_campo }
-                                    onChange={(e) => setNum_horas_campo(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Horas de laboratorio</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el número de horas de laboratorio del curso"
-                                    name="num_horas_laboratorio"
-                                    className="form-control"
-                                    value={ num_horas_laboratorio }
-                                    onChange={(e) => setNum_horas_laboratorio(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Horas de practica</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el número de horas de practica del curso"
-                                    name="num_horas_practica"
-                                    className="form-control"
-                                    value={ num_horas_practica }
-                                    onChange={(e) => setNum_horas_practica(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Horas de teoría</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el número de horas de teoría del curso"
-                                    name="num_horas_teoria"
-                                    className="form-control"
-                                    value={ num_horas_teoria }
-                                    onChange={(e) => setNum_horas_teoria(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Día</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el día que se dictara"
-                                    name="Dia"
-                                    className="form-control"
-                                    value={ dia }
-                                    onChange={(e) => setDia(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Hora de inicio</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite la hora de inicio del curso"
-                                    name="Hora_inicio"
-                                    className="form-control"
-                                    value={ hora_inicio }
-                                    onChange={(e) => setHora_inicio(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Hora de fin</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite la hora de fin de curso"
-                                    name="Hora_fin"
-                                    className="form-control"
-                                    value={ hora_final }
-                                    onChange={(e) => setHora_final(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Sumilla</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite la sumilla del curso"
-                                    name="sumilla"
-                                    className="form-control"
-                                    value={ sumilla }
-                                    onChange={(e) => setSumilla(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Tipo</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el tipo de curso"
-                                    name="tipo"
-                                    className="form-control"
-                                    value={ tipo }
-                                    onChange={(e) => setTipo(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">Estado</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el estado del curso"
-                                    name="estado"
-                                    className="form-control"
-                                    value={ estado }
-                                    onChange={(e) => setEstado(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">ID del Departamento</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el ID del Departamento"
-                                    name="departamento_id"
-                                    className="form-control"
-                                    value={ departamento_id }
-                                    onChange={(e) => setDepartamento_id(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">ID de Periodo Académico</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el ID del Periodo Académico"
-                                    name="periodo_academico_id"
-                                    className="form-control"
-                                    value={ periodo_academico_id }
-                                    onChange={(e) => setPeriodo_academico_id(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">ID de Institucion</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el ID de la Institución"
-                                    name="institucion_id"
-                                    className="form-control"
-                                    value={ institucion_id }
-                                    onChange={(e) => setInstitucion_id(e.target.value)}                                
-                                />
-                            </div>
-                            <div className="form-group mb-2">
-                                <label className="form-label">ID de Plan de Estudios</label>
-                                <input
-                                    type="text"
-                                    placeholder="Digite el ID del Plan de Estudios"
-                                    name="plan_estudios_id"
-                                    className="form-control"
-                                    value={ plan_estudios_id }
-                                    onChange={(e) => setPlan_estudios_id(e.target.value)}                                
-                                />
-                            </div>
-                            <button className="btn btn-success" onClick={(e) => saveOrUpdateCurso(e)}>Guardar</button>
-                            &nbsp;&nbsp;
-                            <Link to='/cursos' className="btn btn-danger">Cancelar</Link>
-                        </form>
+                    <div className="card col-md-6 offset-md-3 offset-md-3">
+                        <h2 className="text-center">{title()}</h2>
+                        <div className="card-body">
+                            <form>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Código de Asignatura</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite el código de la asignatura"
+                                        name="cod_asignatura"
+                                        className="form-control"
+                                        value={cod_asignatura}
+                                        onChange={(e) => setCod_asignatura(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Nombre de Asignatura</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite el nombre de la asignatura"
+                                        name="nombre_asignatura"
+                                        className="form-control"
+                                        value={nombre_asignatura}
+                                        onChange={(e) => setNombre_asignatura(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Tipo de Asignatura</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite el tipo de asignatura"
+                                        name="tipo_asignatura"
+                                        className="form-control"
+                                        value={tipo_asignatura}
+                                        onChange={(e) => setTipo_asignatura(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Área de Estudios</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite el área de estudios"
+                                        name="area_estudios"
+                                        className="form-control"
+                                        value={area_estudios}
+                                        onChange={(e) => setArea_estudios(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Número de Semanas</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Digite el número de semanas"
+                                        name="numero_semanas"
+                                        className="form-control"
+                                        value={numero_semanas}
+                                        onChange={(e) => setNumero_semanas(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Horas Semanales</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Digite las horas semanales"
+                                        name="horas_semanales"
+                                        className="form-control"
+                                        value={horas_semanales}
+                                        onChange={(e) => setHoras_semanales(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Semestre Académico</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite el semestre académico"
+                                        name="semestre_academico"
+                                        className="form-control"
+                                        value={semestre_academico}
+                                        onChange={(e) => setSemestre_academico(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Ciclo</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Digite el ciclo"
+                                        name="ciclo"
+                                        className="form-control"
+                                        value={ciclo}
+                                        onChange={(e) => setCiclo(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Créditos</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Digite los créditos"
+                                        name="creditos"
+                                        className="form-control"
+                                        value={creditos}
+                                        onChange={(e) => setCreditos(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Modalidad</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite la modalidad"
+                                        name="modalidad"
+                                        className="form-control"
+                                        value={modalidad}
+                                        onChange={(e) => setModalidad(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Prerrequisitos</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite los prerrequisitos"
+                                        name="prerequisitos"
+                                        className="form-control"
+                                        value={prerequisitos}
+                                        onChange={(e) => setPrerequisitos(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Sumilla</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite la sumilla"
+                                        name="sumilla"
+                                        className="form-control"
+                                        value={sumilla}
+                                        onChange={(e) => setSumilla(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Evaluación de Aprendizaje</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite la evaluación de aprendizaje"
+                                        name="evaluacion_aprendizaje"
+                                        className="form-control"
+                                        value={evaluacion_aprendizaje}
+                                        onChange={(e) => setEvaluacion_aprendizaje(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Día</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite el día"
+                                        name="dia"
+                                        className="form-control"
+                                        value={dia}
+                                        onChange={(e) => setDia(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Hora de Inicio</label>
+                                    <input
+                                        type="time"
+                                        placeholder="Digite la hora de inicio"
+                                        name="hora_inicio"
+                                        className="form-control"
+                                        value={hora_inicio}
+                                        onChange={(e) => setHora_inicio(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Hora de Fin</label>
+                                    <input
+                                        type="time"
+                                        placeholder="Digite la hora de fin"
+                                        name="hora_fin"
+                                        className="form-control"
+                                        value={hora_fin}
+                                        onChange={(e) => setHora_fin(e.target.value)}
+                                    />
+                                </div>
+                                <button className="btn btn-success" onClick={saveOrUpdateCurso}>Guardar</button>
+                                <Link to="/cursos" className="btn btn-danger">Cancelar</Link>
+                            </form>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
-    )
-}
-
+    );
+};
 export default AddCursoComponent;

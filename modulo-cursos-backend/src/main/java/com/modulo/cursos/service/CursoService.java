@@ -1,16 +1,12 @@
 package com.modulo.cursos.service;
 
-import com.modulo.cursos.exception.ResourceNotFoundException;
-import com.modulo.cursos.model.Alumno;
 import com.modulo.cursos.model.Curso;
-import com.modulo.cursos.repository.IAlumnoRepository;
 import com.modulo.cursos.repository.ICursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Optional;
 
 @Service
 public class CursoService {
@@ -18,60 +14,52 @@ public class CursoService {
     @Autowired
     private ICursoRepository cursoRepository;
 
-    @Autowired
-    private IAlumnoRepository alumnoRepository;
+    // Método para registrar un nuevo curso
+    public Curso registrarCurso(Curso curso) {
+        return cursoRepository.save(curso);
+    }
 
-    public List<Curso> listarCursos() {
+    // Método para actualizar un curso existente
+    public Curso actualizarCurso(Long id, Curso cursoDetalles) {
+        Curso curso = cursoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Curso no encontrado con el id: " + id));
+
+        curso.setCod_asignatura(cursoDetalles.getCod_asignatura());
+        curso.setNombre_asignatura(cursoDetalles.getNombre_asignatura());
+        curso.setTipo_asignatura(cursoDetalles.getTipo_asignatura());
+        curso.setArea_estudios(cursoDetalles.getArea_estudios());
+        curso.setNumero_semanas(cursoDetalles.getNumero_semanas());
+        curso.setHoras_semanales(cursoDetalles.getHoras_semanales());
+        curso.setSemestre_academico(cursoDetalles.getSemestre_academico());
+        curso.setCiclo(cursoDetalles.getCiclo());
+        curso.setCreditos(cursoDetalles.getCreditos());
+        curso.setModalidad(cursoDetalles.getModalidad());
+        curso.setPrerequisitos(cursoDetalles.getPrerequisitos());
+        curso.setSumilla(cursoDetalles.getSumilla());
+        curso.setEvaluacion_aprendizaje(cursoDetalles.getEvaluacion_aprendizaje());
+        curso.setDia(cursoDetalles.getDia());
+        curso.setHora_inicio(cursoDetalles.getHora_inicio());
+        curso.setHora_fin(cursoDetalles.getHora_fin());
+        curso.setCodigo_plan(cursoDetalles.getCodigo_plan());
+
+        return cursoRepository.save(curso);
+    }
+
+    // Método para obtener un curso por su id
+    public Curso obtenerCursoPorId(Long id) {
+        return cursoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Curso no encontrado con el id: " + id));
+    }
+
+    // Método para obtener todos los cursos
+    public List<Curso> obtenerTodosLosCursos() {
         return cursoRepository.findAll();
     }
 
-    public Curso guardarCurso(Curso curso) {
-        return cursoRepository.save(curso);
-    }
-
-    public Curso listarCursoPorId(Long id) {
-        return cursoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("El curso con ese ID no existe: " + id));
-    }
-
-    public Curso actualizarCurso(Long id, Curso cursoRequest) {
+    // Método para eliminar un curso
+    public void eliminarCurso(Long id) {
         Curso curso = cursoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("El curso con ese ID no existe: " + id));
-
-        curso.setCiclo(cursoRequest.getCiclo());
-        curso.setCodigo(cursoRequest.getCodigo());
-        curso.setEstado(cursoRequest.getEstado());
-        curso.setNombre(cursoRequest.getNombre());
-        curso.setModalidad(cursoRequest.getModalidad());
-        curso.setDepartamento_id(cursoRequest.getDepartamento_id());
-        curso.setInstitucion_id(cursoRequest.getInstitucion_id());
-        curso.setNum_creditos(cursoRequest.getNum_creditos());
-        curso.setTipo(cursoRequest.getTipo());
-        curso.setSumilla(cursoRequest.getSumilla());
-        curso.setNum_horas_campo(cursoRequest.getNum_horas_campo());
-        curso.setNum_horas_laboratorio(cursoRequest.getNum_horas_laboratorio());
-        curso.setNum_horas_practica(cursoRequest.getNum_horas_practica());
-        curso.setNum_horas_teoria(cursoRequest.getNum_horas_teoria());
-        curso.setPeriodo_academico_id(cursoRequest.getPeriodo_academico_id());
-        curso.setPlan_estudios_id(cursoRequest.getPlan_estudios_id());
-        curso.setDia(cursoRequest.getDia());
-        curso.setHora_inicio(cursoRequest.getHora_inicio());
-        curso.setHora_fin(cursoRequest.getHora_fin());
-        return cursoRepository.save(curso);
-    }
-
-    public Map<String, Boolean> eliminarCurso(Long id) {
-        Curso curso = cursoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("El curso con ese ID no existe: " + id));
-
+                .orElseThrow(() -> new RuntimeException("Curso no encontrado con el id: " + id));
         cursoRepository.delete(curso);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
-    }
-
-    public List<Alumno> listarAlumnosPorCursoId(Long cursoId) {
-        return alumnoRepository.findByCursoId(cursoId);
     }
 }
-

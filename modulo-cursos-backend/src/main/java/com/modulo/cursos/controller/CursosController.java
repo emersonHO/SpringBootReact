@@ -1,6 +1,5 @@
 package com.modulo.cursos.controller;
 
-import com.modulo.cursos.model.Alumno;
 import com.modulo.cursos.model.Curso;
 import com.modulo.cursos.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -20,17 +20,17 @@ public class CursosController {
 
     @GetMapping("/cursos")
     public List<Curso> listarCursos() {
-        return cursoService.listarCursos();
+        return cursoService.obtenerTodosLosCursos();
     }
 
     @PostMapping("/cursos")
     public Curso guardarCurso(@RequestBody Curso curso) {
-        return cursoService.guardarCurso(curso);
+        return cursoService.registrarCurso(curso);
     }
 
     @GetMapping("/cursos/{id}")
     public ResponseEntity<Curso> listarCursoPorId(@PathVariable Long id) {
-        Curso curso = cursoService.listarCursoPorId(id);
+        Curso curso = cursoService.obtenerCursoPorId(id);
         return ResponseEntity.ok(curso);
     }
 
@@ -42,7 +42,9 @@ public class CursosController {
 
     @DeleteMapping("/cursos/{id}")
     public ResponseEntity<Map<String, Boolean>> eliminarCurso(@PathVariable Long id) {
-        Map<String, Boolean> response = cursoService.eliminarCurso(id);
+        cursoService.eliminarCurso(id);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("eliminado", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 }

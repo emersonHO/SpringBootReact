@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CursoService from '../services/CursoService';
-import '../styles/CalendarioComponent.css'; // Importa el archivo CSS
+import '../styles/CalendarioComponent.css'; 
 
 const CalendarioComponent = () => {
   const [fecha, setFecha] = useState('');
@@ -9,7 +9,7 @@ const CalendarioComponent = () => {
   const fetchCursos = async () => {
     try {
       const response = await CursoService.getAllCursos();
-      const diaSemana = new Date(fecha).getDay(); // Obtiene el día de la semana (0 - domingo, 6 - sábado)
+      const diaSemana = new Date(fecha).getDay(); 
       const cursosFiltrados = response.data.filter(curso => curso.dia === diaSemana);
       setCursos(cursosFiltrados);
     } catch (error) {
@@ -40,8 +40,8 @@ const CalendarioComponent = () => {
             <h2>{curso.nombre}</h2>
             <p>Día: {[ "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"][curso.dia]}</p>
             <p>Sumilla: {curso.sumilla}</p>
-            <p>Hora Inicio: {curso.hora_inicio}:00</p>
-            <p>Hora Fin: {curso.hora_fin}:00</p>
+            <p>Hora Inicio: {curso.hora_inicio}</p>
+            <p>Hora Fin: {curso.hora_fin}</p>
           </div>
         ))}
       </div>
@@ -50,4 +50,5 @@ const CalendarioComponent = () => {
 };
 
 export default CalendarioComponent;
+
 
