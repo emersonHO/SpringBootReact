@@ -169,7 +169,7 @@ export const AddCursoComponent = () => {
                                 <div className="form-group mb-2">
                                     <label className="form-label">Ciclo</label>
                                     <input
-                                        type="number"
+                                        type="text"
                                         placeholder="Digite el ciclo"
                                         name="ciclo"
                                         className="form-control"

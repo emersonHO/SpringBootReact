@@ -11,8 +11,7 @@ import FormulasComponent from './components/FormulasComponent';
 import CalendarioComponent from './components/CalendarioComponent';
 import ListAlumnosComponent from './components/ListAlumnosComponent';
 import AddAlumnoComponent from './components/AddAlumnoComponent';
-import ListFormulasComponent from './components/ListFormulasComponent';
-import AddFormulaComponent from './components/AddFormulaComponent';
+import AddFormulaComponent from './components/AddFormulaComponent'; // Nuevo componente para agregar/editar fórmulas
 import './App.css';
 
 function App() {
@@ -30,13 +29,13 @@ function App() {
               <Route path="/add-curso" element={<AddCursoComponent />} />
               <Route path="/edit-curso/:id" element={<AddCursoComponent />} />
               <Route path="/formulas" element={<FormulasComponent />} />
+              <Route path="/formulas/:cursoId" element={<FormulasComponent />} />
+              <Route path="/add-formula/:cursoId" element={<AddFormulaComponent />} />
+              <Route path="/edit-formula/:cursoId/:formulaId" element={<AddFormulaComponent />} />
               <Route path="/calendario" element={<CalendarioComponent />} />
               <Route path="/cursos/:cursoId/alumnos" element={<ListAlumnosComponent />} />
               <Route path="/cursos/:cursoId/alumnos/add-alumno" element={<AddAlumnoComponent />} />
               <Route path="/cursos/:cursoId/alumnos/edit-alumno/:alumnoId" element={<AddAlumnoComponent />} />
-              <Route path="/cursos/:cursoId/formulas" element={<ListFormulasComponent />} />
-              <Route path="/cursos/:cursoId/formulas/add-formula" element={<AddFormulaComponent />} />
-              <Route path="/cursos/:cursoId/formulas/edit-formula/:formulaId" element={<AddFormulaComponent />} />
             </Routes>
           </div>
         </div>

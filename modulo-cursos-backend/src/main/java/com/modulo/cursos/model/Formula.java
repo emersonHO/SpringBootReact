@@ -16,15 +16,46 @@ public class Formula{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "curso_id")
-    private Long cursoId;
-
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "curso")
+    private String codigo;
 
     @Column(name = "descripcion")
     private String descripcion;
 
-    // Getters y setters
-    // ...
+    @Column(name = "formula")
+    private String formula;
+
+    @Column(name = "funcionid")
+    private int funcionid;
+
+    @Column(name = "estado")
+    private String estado;
+
+    @Column(name = "usapesos")
+    private int usapesos;
+
+    @Column(name = "restarmenor")
+    private int restarmenor;
+
+    @Column(name = "restarmayor")
+    private int restamayor;
+
+    @Column(name = "nummayor")
+    private int nummayor;
+
+    @Column(name = "copiamenor")
+    private int copiamenor;
+
+    @Column(name = "copiaprimero")
+    private int copiaprimero;
+
+    @Column(name = "copiamayor")
+    private int copiamayor;
+
+    @Column(name = "redondeo")
+    private int redondeo;
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id", nullable = false)
+    private Curso curso;
 }

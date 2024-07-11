@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+
 import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,19 +32,19 @@ public class Curso{
     private String area_estudios;
 
     @Column(name = "numero_semanas")
-    private int numero_semanas;
+    private Integer numero_semanas;
 
     @Column(name = "horas_semanales")
-    private int horas_semanales;
+    private Integer horas_semanales;
 
     @Column(name = "semestre_academico")
     private String semestre_academico;
 
     @Column(name = "ciclo")
-    private int ciclo;
+    private String ciclo;
 
     @Column(name = "creditos")
-    private int creditos;
+    private Integer creditos;
 
     @Column(name = "modalidad")
     private String modalidad;
@@ -57,7 +59,7 @@ public class Curso{
     private String evaluacion_aprendizaje;
 
     @Column(name = "dia")
-    private int dia;
+    private Integer dia;
 
     @Column(name = "hora_inicio")
     private LocalTime hora_inicio;
