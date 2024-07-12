@@ -15,8 +15,6 @@ const SidebarComponent = () => {
             <div className="user-info">
                 <img src="path/to/user-icon.png" alt="Usuario" className="user-icon" />
                 <div className="user-details">
-                    <p>Usuario</p>
-                    <p>Cargo</p>
                 </div>
             </div>
             <ul className="nav-links">
