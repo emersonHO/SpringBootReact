@@ -56,8 +56,8 @@ export const ListCursosComponent = () => {
                 {cursos.map(curso => (
                     <div key={curso.id} className="card curso-card" onClick={() => handleCardClick(curso.id)}>
                         <div className="card-body curso-card-body">
-                            <div className="initials-box">{getInitials(curso.nombre)}</div>
-                            <p className="card-text">{curso.nombre}</p>
+                            <div className="initials-box">{getInitials(curso.nombre_asignatura)}</div>
+                            <p className="card-text">{curso.nombre_asignatura}</p>
                             <p className="card-text">{curso.ciclo} / {curso.horario}</p>
                         </div>
                         <div className="card-footer">

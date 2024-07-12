@@ -37,7 +37,7 @@ const CalendarioComponent = () => {
       <div>
         {cursos.map(curso => (
           <div key={curso.id} className="curso-card">
-            <h2>{curso.nombre}</h2>
+            <h2>{curso.nombre_asignatura}</h2>
             <p>Día: {[ "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"][curso.dia]}</p>
             <p>Sumilla: {curso.sumilla}</p>
             <p>Hora Inicio: {curso.hora_inicio}</p>
