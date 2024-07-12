@@ -41,7 +41,7 @@
 }
 
 .btn-primary-2 {
-    margin: 60px;
+    margin-top: 60px;
     background-color: #007bff;
     border-color: #007bff;
     border-radius: 10px;
@@ -51,6 +51,7 @@
     grid-column: span 2; /* Adjust the span as needed */
     height: 50%;
     width: 50%;
+    color: white;
 }
 
 .btn-secondary {
