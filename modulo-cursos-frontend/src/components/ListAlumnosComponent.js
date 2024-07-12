@@ -108,14 +108,15 @@ const ListAlumnosComponent = () => {
                 </tbody>
             </table>
             <div className="d-flex justify-content-between align-items-center mt-3">
-                <label htmlFor="fileUpload" className="btn btn-success">
-                    Importar Alumnos CSV
-                    <input type="file" id="fileUpload" style={{ display: 'none' }} onChange={handleFileUpload} accept=".csv" />
-                </label>
-                {/* <button className="btn btn-success" onClick={handleExportAlumnos}>Exportar Alumnos CSV</button> */}
-                
-            </div>
-            <a href='http://localhost:8080/api/v1/alumnos/exportar' target='_blank'>Exportar </a>
+               <label htmlFor="fileUpload" className="btn btn-success btn-lg">
+              Importar Alumnos CSV
+                 <input type="file" id="fileUpload" style={{ display: 'none' }} onChange={handleFileUpload} accept=".csv" />
+                 </label>
+                <a href='http://localhost:8080/api/v1/alumnos/exportar' className="btn btn-success btn-lg" target='_blank' rel="noopener noreferrer">
+                 Exportar Alumnos CSV
+                </a>
+</div>
+            
         </div>
     );
 };
