@@ -41,9 +41,6 @@ const SidebarComponent = () => {
                         </ul>
                     )}
                 </li>
-                <li>
-                    <Link to="/"><BsHouseDoor /> Home</Link>
-                </li>
             </ul>
         </div>
     );
