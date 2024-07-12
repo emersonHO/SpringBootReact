@@ -1,4 +1,3 @@
-com\modulo\cursos\config\WebConfig.class
 com\modulo\cursos\service\AlumnoCursoService.class
 com\modulo\cursos\model\Formula.class
 com\modulo\cursos\repository\IAlumnoCursoRepository.class
