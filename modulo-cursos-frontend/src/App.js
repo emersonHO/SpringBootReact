@@ -28,6 +28,7 @@ function App() {
               <Route path="/cursos/:id" element={<CursoDetailsComponent />} />
               <Route path="/add-curso" element={<AddCursoComponent />} />
               <Route path="/edit-curso/:id" element={<AddCursoComponent />} />
+              <Route path="/duplicate-curso/:id" element={<AddCursoComponent duplicate />} />
               <Route path="/formulas" element={<FormulasComponent />} />
               <Route path="/formulas/:cursoId" element={<FormulasComponent />} />
               <Route path="/add-formula/:cursoId" element={<AddFormulaComponent />} />

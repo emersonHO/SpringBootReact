@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CursoService from "../services/CursoService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-export const AddCursoComponent = () => {
+export const AddCursoComponent = ({ duplicate }) => {
     const [cod_asignatura, setCod_asignatura] = useState('');
     const [nombre_asignatura, setNombre_asignatura] = useState('');
     const [tipo_asignatura, setTipo_asignatura] = useState('');
@@ -31,15 +31,17 @@ export const AddCursoComponent = () => {
             hora_inicio, hora_fin
         };
 
-        if (id) {
-            CursoService.updateCurso(id, curso).then((response) => {
+        if (duplicate || !id) {
+            // Crear nuevo curso (duplicado o nuevo)
+            CursoService.createCurso(curso).then((response) => {
                 console.log(response.data);
                 navigate('/cursos');
             }).catch(error => {
                 console.log(error);
             });
         } else {
-            CursoService.createCurso(curso).then((response) => {
+            // Actualizar curso existente
+            CursoService.updateCurso(id, curso).then((response) => {
                 console.log(response.data);
                 navigate('/cursos');
             }).catch(error => {
@@ -74,7 +76,9 @@ export const AddCursoComponent = () => {
     }, [id]);
 
     const title = () => {
-        if (id) {
+        if (duplicate) {
+            return <h2 className="text-center">Duplicar curso</h2>;
+        } else if (id) {
             return <h2 className="text-center">Actualizar curso</h2>;
         } else {
             return <h2 className="text-center">Agregar curso</h2>;

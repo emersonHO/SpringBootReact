@@ -22,6 +22,11 @@ class CursoService {
   deleteCurso(cursoId) {
     return axios.delete(CURSOS_BASE_REST_API_URL + '/' + cursoId);
   }
+
+  duplicateCurso(cursoId, curso) {
+    return axios.put(CURSOS_BASE_REST_API_URL + '/' + cursoId + '/duplicar', curso);
+  }
+
 }
 
 // Exporta una instancia de CursoService
