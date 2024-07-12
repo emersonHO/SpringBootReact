@@ -39,6 +39,8 @@ button {
   margin: 10px 0;
   border-radius: 5px;
   background-color: #f9f9f9;
+  width: 300px; /* Ajusta el ancho según tus necesidades */
+  height: 250px; /* Ajusta la altura según tus necesidades */
 }
 
 .curso-card h2 {
