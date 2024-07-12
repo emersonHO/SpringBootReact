@@ -66,9 +66,9 @@ export const FormulasComponent = () => {
                             )}
                         </div>
                     </div>
-                ))}
+                ))} <Link className="btn btn-primary-2" to={`/tipoevaluacion`}>Tipos de Evaluación</Link>
             </div>
-            <Link className="btn btn-primary-2" to={`/tipoevaluacion`}>Tipos de Evaluación</Link>
+            
         </div>
     );
 };
