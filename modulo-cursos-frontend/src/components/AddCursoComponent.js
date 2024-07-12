@@ -85,6 +85,16 @@ export const AddCursoComponent = ({ duplicate }) => {
         }
     };
 
+    const buttonText = () => {
+        if (duplicate) {
+            return "Duplicar";
+        } else if (id) {
+            return "Actualizar";
+        } else {
+            return "Crear";
+        }
+    };
+
     return (
         <div>
             <div className="container">
@@ -269,8 +279,7 @@ export const AddCursoComponent = ({ duplicate }) => {
                                         onChange={(e) => setHora_fin(e.target.value)}
                                     />
                                 </div>
-                                <button className="btn btn-success" onClick={saveOrUpdateCurso}>
-                                {duplicate || !id ? "Duplicar" : "Actualizar"}
+                                <button className="btn btn-success" onClick={saveOrUpdateCurso}>{buttonText()}
                                 </button>
                                 <Link to="/cursos" className="btn btn-danger">Cancelar</Link>
                             </form>
