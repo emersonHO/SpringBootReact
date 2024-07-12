@@ -28,7 +28,7 @@ const AddAlumnoComponent = () => {
             console.log(error);
         }
     }
-
+    
     useEffect(() => {
         if (alumnoId) {
             AlumnoService.getAlumnoById(alumnoId).then((response) => {
