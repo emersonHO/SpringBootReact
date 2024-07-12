@@ -2,9 +2,13 @@ package com.modulo.cursos.service;
 
 import com.modulo.cursos.exception.ResourceNotFoundException;
 import com.modulo.cursos.model.Alumno;
+import com.modulo.cursos.model.AlumnoCurso;
+import com.modulo.cursos.model.Curso;
+import com.modulo.cursos.repository.IAlumnoCursoRepository;
 import com.modulo.cursos.repository.IAlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +18,12 @@ import java.util.Map;
 public class AlumnoService {
 
     @Autowired
+    private IAlumnoCursoRepository alumnoCursoRepository;
+
+    @Autowired
     private IAlumnoRepository alumnoRepository;
+    @Autowired
+    private CursoService cursoService;
 
     public List<Alumno> listarAlumnos() {
         return alumnoRepository.findAll();
@@ -44,14 +53,12 @@ public class AlumnoService {
         return alumnoRepository.save(alumno);
     }
 
-    public Map<String, Boolean> eliminarAlumno(Long id) {
+    public void eliminarAlumno(Long id) {
+        System.out.println("Intentando eliminar alumno con ID: " + id);
         Alumno alumno = alumnoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("El alumno con ese ID no existe: " + id));
-
         alumnoRepository.delete(alumno);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        System.out.println("Alumno con ID: " + id + " ha sido eliminado.");
     }
 }
 

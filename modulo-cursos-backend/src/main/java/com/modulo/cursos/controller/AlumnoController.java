@@ -1,11 +1,14 @@
 package com.modulo.cursos.controller;
 
+import com.modulo.cursos.exception.ResourceNotFoundException;
 import com.modulo.cursos.model.Alumno;
 import com.modulo.cursos.service.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +44,17 @@ public class AlumnoController {
 
     @DeleteMapping("/alumnos/{id}")
     public ResponseEntity<Map<String, Boolean>> eliminarAlumno(@PathVariable Long id) {
-        Map<String, Boolean> response = alumnoService.eliminarAlumno(id);
-        return ResponseEntity.ok(response);
+        try {
+            alumnoService.eliminarAlumno(id);
+            Map<String, Boolean> response = new HashMap<>();
+            response.put("eliminado", Boolean.TRUE);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            // Log the error and return a 500 status code
+            e.printStackTrace();
+            Map<String, Boolean> response = new HashMap<>();
+            response.put("eliminado", Boolean.FALSE);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 }
