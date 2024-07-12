@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\proja\OneDrive\Desktop\Trabajo\Material\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\controller\AlumnoController.java
 C:\Users\proja\OneDrive\Desktop\Trabajo\Material\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\controller\AlumnoCursoController.java
 C:\Users\proja\OneDrive\Desktop\Trabajo\Material\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\controller\CursosController.java
@@ -16,3 +17,23 @@ C:\Users\proja\OneDrive\Desktop\Trabajo\Material\SpringBootReact\modulo-cursos-b
 C:\Users\proja\OneDrive\Desktop\Trabajo\Material\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\service\AlumnoService.java
 C:\Users\proja\OneDrive\Desktop\Trabajo\Material\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\service\CursoService.java
 C:\Users\proja\OneDrive\Desktop\Trabajo\Material\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\service\FormulaService.java
+=======
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\controller\AlumnoController.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\controller\AlumnoCursoController.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\controller\CursosController.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\controller\FormulaController.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\exception\ResourceNotFoundException.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\model\Alumno.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\model\AlumnoCurso.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\model\Curso.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\model\Formula.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\ModuloCursosBackendApplication.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\repository\IAlumnoCursoRepository.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\repository\IAlumnoRepository.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\repository\ICursoRepository.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\repository\IFormulaRepository.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\service\AlumnoCursoService.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\service\AlumnoService.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\service\CursoService.java
+C:\Users\Lenovo\Desktop\Proyecto\SpringBootReact\modulo-cursos-backend\src\main\java\com\modulo\cursos\service\FormulaService.java
+>>>>>>> c37e1434628c7000512bdee388a0bce7da6ba11f

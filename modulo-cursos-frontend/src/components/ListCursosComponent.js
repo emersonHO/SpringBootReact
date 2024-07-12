@@ -70,8 +70,13 @@ export const ListCursosComponent = () => {
                                 <div className="dropdown-menu show" aria-labelledby={`dropdownMenuButton-${curso.id}`}>
                                     <Link className="dropdown-item" to={`/edit-curso/${curso.id}`} onClick={(e) => e.stopPropagation()}>Actualizar</Link>
                                     <Link to={`/cursos/${curso.id}/alumnos`} className="dropdown-item" onClick={(e) => e.stopPropagation()}>Registro de alumnos</Link>
+<<<<<<< HEAD
                                     <button className="dropdown-item" onClick={(e) => {
                                         e.stopPropagation();
+=======
+                                    <Link className="dropdown-item" to={`/duplicate-curso/${curso.id}`} onClick={(e) => e.stopPropagation()}>Duplicar curso</Link>
+                                    <button className="dropdown-item" onClick={() => {
+>>>>>>> c37e1434628c7000512bdee388a0bce7da6ba11f
                                         deleteCurso(curso.id);
                                         setDropdownId(null);
                                     }}>Eliminar</button>
