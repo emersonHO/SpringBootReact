@@ -3,6 +3,7 @@ import CursoService from "../services/CursoService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BsThreeDotsVertical, BsPlus } from "react-icons/bs";
 import '../styles/ListCursosComponent.css';
+import '../styles/AddFormulaComponent.css';
 
 export const FormulasComponent = () => {
     const [cursos, setCursos] = useState([]);
@@ -67,7 +68,7 @@ export const FormulasComponent = () => {
                     </div>
                 ))}
             </div>
-            <Link className="btn btn-primary" to={`/tipoevaluacion`}>Tipos de Evaluación</Link>
+            <Link className="btn btn-primary-2" to={`/tipoevaluacion`}>Tipos de Evaluación</Link>
         </div>
     );
 };
