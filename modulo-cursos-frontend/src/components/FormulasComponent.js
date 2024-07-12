@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CursoService from "../services/CursoService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BsThreeDotsVertical, BsPlus } from "react-icons/bs";
 import '../styles/ListCursosComponent.css';
 
@@ -8,6 +8,7 @@ export const FormulasComponent = () => {
     const [cursos, setCursos] = useState([]);
     const [dropdownId, setDropdownId] = useState(null);
     const navigate = useNavigate();
+    const { cursoId } = useParams();
 
     useEffect(() => {
         listarCursos();
@@ -30,14 +31,13 @@ export const FormulasComponent = () => {
     };
 
     const getInitials = (name) => {
-        if (!name) return ''; // Handle case where name is undefined or null
+        if (!name) return ''; 
     
         return name.split(' ').map(word => word[0]).join('');
     };
-    
 
     const handleCardClick = (cursoId) => {
-        navigate(`/cursos/${cursoId}/formulas`);
+        navigate(`/formulas/${cursoId}`);
     };
 
     return (
@@ -55,22 +55,19 @@ export const FormulasComponent = () => {
                             <button className="btn btn-light" onClick={(e) => {
                                 e.stopPropagation();
                                 toggleDropdown(curso.id);
-                                }}><BsThreeDotsVertical />
-                            </button>
+                            }}><BsThreeDotsVertical /></button>
                             {dropdownId === curso.id && (
                                 <div className="dropdown-menu show" aria-labelledby={`dropdownMenuButton-${curso.id}`}>
-                                    <Link className="dropdown-item" to={`/cursos/${curso.id}/formulas/add-formula`} onClick={(e) => e.stopPropagation()}>Agregar Fórmula</Link>
-                                    <Link className="dropdown-item" to={`/cursos/${curso.id}/formulas`} onClick={(e) => e.stopPropagation()}>Ver Fórmulas</Link>
-                                    <button className="dropdown-item" onClick={() => {
-                                        // Eliminar curso o cualquier otra acción
-                                        setDropdownId(null);
-                                    }}>Eliminar</button>
+                                    <Link className="dropdown-item" to={`/formulas/${curso.id}/add-formula`} onClick={(e) => e.stopPropagation()}>Agregar Fórmula</Link>
+                                    <Link className="dropdown-item" to={`/formulas/${curso.id}/edit-formula/:formulaId`} onClick={(e) => e.stopPropagation()}>Editar Fórmula</Link>
+                                    <Link className="dropdown-item" to={`/formulas/${curso.id}/`} onClick={(e) => e.stopPropagation()}>Ver Fórmulas</Link>
                                 </div>
                             )}
                         </div>
                     </div>
                 ))}
             </div>
+            <Link className="btn btn-primary" to={`/tipoevaluacion`}>Tipos de Evaluación</Link>
         </div>
     );
 };

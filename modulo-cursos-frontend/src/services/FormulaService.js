@@ -1,28 +1,27 @@
 import axios from 'axios';
 
-const FORMULA_API_BASE_URL = "https://springbootreact-7w44.onrender.com/api/v1/formulas";
+const FORMULAS_BASE_URL = "https://springbootreact-7w44.onrender.com/api/v1/formulas";
 
-class FormulaService {
-    getFormulasByCursoId(cursoId) {
-        return axios.get(`${FORMULA_API_BASE_URL}/curso/${cursoId}`);
-    }
+class FormulasService {
+  getAllFormulasByCursoId(cursoId) {
+    return axios.get(`${FORMULAS_BASE_URL}/${cursoId}`);
+  }
 
-    createFormula(cursoId, formula) {
-        return axios.post(`${FORMULA_API_BASE_URL}/curso/${cursoId}`, formula);
-    }
+  createFormula(cursoId, formula) {
+    return axios.post(`${FORMULAS_BASE_URL}/${cursoId}/add-formula`, formula);
+  }
 
-    getFormulaById(cursoId, formulaId) {
-        return axios.get(`${FORMULA_API_BASE_URL}/curso/${cursoId}/${formulaId}`);
-    }
+  getFormulaById(cursoId, formulaId) {
+    return axios.get(`${FORMULAS_BASE_URL}/${cursoId}/edit-formula/${formulaId}`);
+  }
 
-    updateFormula(cursoId, formulaId, formula) {
-        return axios.put(`${FORMULA_API_BASE_URL}/curso/${cursoId}/${formulaId}`, formula);
-    }
+  updateFormula(cursoId, formulaId, formula) {
+    return axios.put(`${FORMULAS_BASE_URL}/${cursoId}/edit-formula/${formulaId}`, formula);
+  }
 
-    deleteFormula(cursoId, formulaId) {
-        return axios.delete(`${FORMULA_API_BASE_URL}/curso/${cursoId}/${formulaId}`);
-    }
+  deleteFormula(cursoId, formulaId) {
+    return axios.delete(`${FORMULAS_BASE_URL}/${cursoId}/edit-formula/${formulaId}`);
+  }
 }
 
-const instance = new FormulaService();
-export default instance;
+export default new FormulasService();

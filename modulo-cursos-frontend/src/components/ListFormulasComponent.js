@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import FormulaService from '../services/FormulaService';
 
 const ListFormulasComponent = () => {
@@ -7,25 +7,36 @@ const ListFormulasComponent = () => {
     const [formulas, setFormulas] = useState([]);
 
     useEffect(() => {
-        FormulaService.getFormulasByCursoId(cursoId).then(response => {
-            setFormulas(response.data);
-        }).catch(error => {
-            console.error('Error fetching formulas:', error);
-        });
-    }, [cursoId]);
+        fetchFormulas();
+    }, []);
 
-    const deleteFormula = (formulaId) => {
-        FormulaService.deleteFormula(formulaId).then(() => {
-            setFormulas(formulas.filter(formula => formula.id !== formulaId));
-        }).catch(error => {
-            console.error('Error deleting formula:', error);
-        });
+    const fetchFormulas = async () => {
+        try {
+            const response = await FormulaService.getFormulasByCursoId(cursoId);
+            setFormulas(response.data);
+        } catch (error) {
+            console.error('Error fetching formulas:', error);
+        }
+    };
+
+    const deleteFormula = async (formulaId) => {
+        const confirm = window.confirm("¿Estás seguro de que quieres eliminar esta fórmula?");
+        if (confirm) {
+            try {
+                console.log(`Deleting formula with ID: ${formulaId}`);
+                await FormulaService.deleteFormula(formulaId);
+                console.log('Formula deleted successfully');
+                setFormulas(formulas.filter(formula => formula.id !== formulaId));
+            } catch (error) {
+                console.error('Error deleting formula:', error.response ? error.response.data : error.message);
+            }
+        }
     };
 
     return (
         <div>
-            <h2>Formulas para el curso {cursoId}</h2>
-            <Link to={`/cursos/${cursoId}/formulas/add-formula`} className="btn btn-primary mb-2">Agregar Formula</Link>
+            <h2>Fórmulas para el curso {cursoId}</h2>
+            <Link to={`/formulas/${cursoId}/add-formula`} className="btn btn-primary mb-2">Agregar Fórmula</Link>
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -40,7 +51,7 @@ const ListFormulasComponent = () => {
                             <td>{formula.nombre}</td>
                             <td>{formula.descripcion}</td>
                             <td>
-                                <Link to={`/cursos/${cursoId}/formulas/edit-formula/${formula.id}`} className="btn btn-info">Editar</Link>
+                                <Link to={`/formulas/${cursoId}/edit-formula/${formula.id}`} className="btn btn-info">Editar</Link>
                                 <button className="btn btn-danger" onClick={() => deleteFormula(formula.id)}>Eliminar</button>
                             </td>
                         </tr>
