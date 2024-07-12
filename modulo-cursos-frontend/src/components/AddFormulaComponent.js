@@ -1,130 +1,112 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import FormulaService from '../services/FormulaService';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import FormulaService from "../services/FormulaService";
 
 const AddFormulaComponent = () => {
     const [codigo, setCodigo] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [formula, setFormula] = useState('');
-    const [funcionid, setFuncionid] = useState('');
-    const [estado, setEstado] = useState('');
-    const [usapesos, setUsapesos] = useState('');
-    const [restarmenor, setRestarmenor] = useState('');
-    const [restamayor, setRestamayor] = useState('');
-    const [nummayor, setNummayor] = useState('');
-    const [copiamenor, setCopiamenor] = useState('');
-    const [copiaprimero, setCopiaprimero] = useState('');
-    const [copiamayor, setCopiamayor] = useState('');
-    const [redondeo, setRedondeo] = useState('');
-
+    const [formulaValue, setFormulaValue] = useState('');
+    const [funcionId, setFuncionId] = useState('');
+    const [estado, setEstado] = useState('Activo');
     const navigate = useNavigate();
     const { cursoId, formulaId } = useParams();
 
     useEffect(() => {
         if (formulaId) {
-            FormulaService.getFormulasByCursoId(cursoId).then(response => {
-                const formula = response.data.find(f => f.id === parseInt(formulaId));
+            FormulaService.getFormulaById(formulaId).then((response) => {
+                const formula = response.data;
                 setCodigo(formula.codigo);
                 setDescripcion(formula.descripcion);
-                setFormula(formula.formula);
-                setFuncionid(formula.funcionid);
+                setFormulaValue(formula.formula);
+                setFuncionId(formula.funcionId);
                 setEstado(formula.estado);
-                setUsapesos(formula.usapesos);
-                setRestarmenor(formula.restarmenor);
-                setRestamayor(formula.restamayor);
-                setNummayor(formula.nummayor);
-                setCopiamenor(formula.copiamenor);
-                setCopiaprimero(formula.copiaprimero);
-                setCopiamayor(formula.copiamayor);
-                setRedondeo(formula.redondeo);
             }).catch(error => {
-                console.error('Error fetching formula:', error);
+                console.log(error);
             });
         }
-    }, [cursoId, formulaId]);
+    }, [formulaId]);
 
-    const saveOrUpdateFormula = (e) => {
+    const saveOrUpdateFormula = async (e) => {
         e.preventDefault();
-        const formula = {
-            codigo, descripcion, formula, funcionid, estado, usapesos, restarmenor,
-            restamayor, nummayor, copiamenor, copiaprimero, copiamayor, redondeo
-        };
+        const formula = { codigo, descripcion, formula: formulaValue, funcionId, estado };
 
-        if (formulaId) {
-            FormulaService.updateFormula(formulaId, formula).then(() => {
-                navigate(`/cursos/${cursoId}/formulas`);
-            }).catch(error => {
-                console.error('Error updating formula:', error);
-            });
-        } else {
-            FormulaService.createFormula(cursoId, formula).then(() => {
-                navigate(`/cursos/${cursoId}/formulas`);
-            }).catch(error => {
-                console.error('Error creating formula:', error);
-            });
+        try {
+            if (formulaId) {
+                await FormulaService.updateFormula(formulaId, formula);
+            } else {
+                await FormulaService.createFormula(cursoId, formula);
+            }
+            navigate(`/cursos/${cursoId}/formulas`);
+        } catch (error) {
+            console.log(error);
         }
-    };
+    }
+
+    const title = () => {
+        return formulaId ? <h2 className="text-center">Actualizar Fórmula</h2> : <h2 className="text-center">Registrar Fórmula</h2>;
+    }
 
     return (
         <div>
-            <h2>{formulaId ? 'Editar Fórmula' : 'Agregar Fórmula'}</h2>
-            <form onSubmit={saveOrUpdateFormula}>
-                <div className="form-group">
-                    <label>Código</label>
-                    <input type="text" className="form-control" value={codigo} onChange={(e) => setCodigo(e.target.value)} required />
+            <div className="container">
+                <div className="row">
+                    <div className="card col-md-6 offset-md-3 offset-md-3">
+                        {title()}
+                        <div className="card-body">
+                            <form onSubmit={saveOrUpdateFormula}>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Código</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite el código de la fórmula"
+                                        name="codigo"
+                                        className="form-control"
+                                        value={codigo}
+                                        onChange={(e) => setCodigo(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Descripción</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite la descripción de la fórmula"
+                                        name="descripcion"
+                                        className="form-control"
+                                        value={descripcion}
+                                        onChange={(e) => setDescripcion(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Fórmula</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Digite la fórmula"
+                                        name="formulaValue"
+                                        className="form-control"
+                                        value={formulaValue}
+                                        onChange={(e) => setFormulaValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label className="form-label">Función ID</label>
+                                    <input
+                                        type="number"
+                                        placeholder="Digite el ID de la función"
+                                        name="funcionId"
+                                        className="form-control"
+                                        value={funcionId}
+                                        onChange={(e) => setFuncionId(e.target.value)}
+                                    />
+                                </div>
+                                <button type="submit" className="btn btn-success">Guardar</button>
+                                <Link to={`/cursos/${cursoId}/formulas`} className="btn btn-danger ms-2">Cancelar</Link>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Descripción</label>
-                    <input type="text" className="form-control" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Fórmula</label>
-                    <input type="text" className="form-control" value={formula} onChange={(e) => setFormula(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Función ID</label>
-                    <input type="number" className="form-control" value={funcionid} onChange={(e) => setFuncionid(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Estado</label>
-                    <input type="text" className="form-control" value={estado} onChange={(e) => setEstado(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Usa Pesos</label>
-                    <input type="number" className="form-control" value={usapesos} onChange={(e) => setUsapesos(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Restar Menor</label>
-                    <input type="number" className="form-control" value={restarmenor} onChange={(e) => setRestarmenor(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Restar Mayor</label>
-                    <input type="number" className="form-control" value={restamayor} onChange={(e) => setRestamayor(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Num Mayor</label>
-                    <input type="number" className="form-control" value={nummayor} onChange={(e) => setNummayor(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Copia Menor</label>
-                    <input type="number" className="form-control" value={copiamenor} onChange={(e) => setCopiamenor(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Copiq Primero</label>
-                    <input type="number" className="form-control" value={copiaprimero} onChange={(e) => setCopiaprimero(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Copiq Mayor</label>
-                    <input type="number" className="form-control" value={copiamayor} onChange={(e) => setCopiamayor(e.target.value)} required />
-                </div>
-                <div className="form-group">
-                    <label>Redondeo</label>
-                    <input type="number" className="form-control" value={redondeo} onChange={(e) => setRedondeo(e.target.value)} required />
-                </div>
-                <button type="submit" className="btn btn-primary">Guardar</button>
-            </form>
+            </div>
         </div>
     );
-};
+}
 
 export default AddFormulaComponent;

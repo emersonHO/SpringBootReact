@@ -16,7 +16,7 @@ public class Formula{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "curso")
+    @Column(name = "codigo")
     private String codigo;
 
     @Column(name = "descripcion")
@@ -25,8 +25,8 @@ public class Formula{
     @Column(name = "formula")
     private String formula;
 
-    @Column(name = "funcionid")
-    private int funcionid;
+    @Column(name = "funcionId")
+    private int funcionId;
 
     @Column(name = "estado")
     private String estado;

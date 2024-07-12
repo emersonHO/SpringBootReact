@@ -19,6 +19,33 @@ public class CursoService {
         return cursoRepository.save(curso);
     }
 
+    // Método para duplicar un nuevo curso
+    public Curso duplicarCurso(Long id, Curso cursoDetalles) {
+        Curso cursoExistente = cursoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Curso no encontrado con el id: " + id));
+
+        Curso nuevoCurso = new Curso();
+        nuevoCurso.setCod_asignatura(cursoDetalles.getCod_asignatura() != null ? cursoDetalles.getCod_asignatura() : cursoExistente.getCod_asignatura());
+        nuevoCurso.setNombre_asignatura(cursoDetalles.getNombre_asignatura() != null ? cursoDetalles.getNombre_asignatura() : cursoExistente.getNombre_asignatura());
+        nuevoCurso.setTipo_asignatura(cursoDetalles.getTipo_asignatura() != null ? cursoDetalles.getTipo_asignatura() : cursoExistente.getTipo_asignatura());
+        nuevoCurso.setArea_estudios(cursoDetalles.getArea_estudios() != null ? cursoDetalles.getArea_estudios() : cursoExistente.getArea_estudios());
+        nuevoCurso.setNumero_semanas(cursoDetalles.getNumero_semanas() != null ? cursoDetalles.getNumero_semanas() : cursoExistente.getNumero_semanas());
+        nuevoCurso.setHoras_semanales(cursoDetalles.getHoras_semanales() != null ? cursoDetalles.getHoras_semanales() : cursoExistente.getHoras_semanales());
+        nuevoCurso.setSemestre_academico(cursoDetalles.getSemestre_academico() != null ? cursoDetalles.getSemestre_academico() : cursoExistente.getSemestre_academico());
+        nuevoCurso.setCiclo(cursoDetalles.getCiclo() != null ? cursoDetalles.getCiclo() : cursoExistente.getCiclo());
+        nuevoCurso.setCreditos(cursoDetalles.getCreditos() != null ? cursoDetalles.getCreditos() : cursoExistente.getCreditos());
+        nuevoCurso.setModalidad(cursoDetalles.getModalidad() != null ? cursoDetalles.getModalidad() : cursoExistente.getModalidad());
+        nuevoCurso.setPrerequisitos(cursoDetalles.getPrerequisitos() != null ? cursoDetalles.getPrerequisitos() : cursoExistente.getPrerequisitos());
+        nuevoCurso.setSumilla(cursoDetalles.getSumilla() != null ? cursoDetalles.getSumilla() : cursoExistente.getSumilla());
+        nuevoCurso.setEvaluacion_aprendizaje(cursoDetalles.getEvaluacion_aprendizaje() != null ? cursoDetalles.getEvaluacion_aprendizaje() : cursoExistente.getEvaluacion_aprendizaje());
+        nuevoCurso.setDia(cursoDetalles.getDia() != null ? cursoDetalles.getDia() : cursoExistente.getDia());
+        nuevoCurso.setHora_inicio(cursoDetalles.getHora_inicio() != null ? cursoDetalles.getHora_inicio() : cursoExistente.getHora_inicio());
+        nuevoCurso.setHora_fin(cursoDetalles.getHora_fin() != null ? cursoDetalles.getHora_fin() : cursoExistente.getHora_fin());
+        nuevoCurso.setCodigo_plan(cursoDetalles.getCodigo_plan() != null ? cursoDetalles.getCodigo_plan() : cursoExistente.getCodigo_plan());
+
+        return cursoRepository.save(nuevoCurso);
+    }
+
     // Método para actualizar un curso existente
     public Curso actualizarCurso(Long id, Curso cursoDetalles) {
         Curso curso = cursoRepository.findById(id)

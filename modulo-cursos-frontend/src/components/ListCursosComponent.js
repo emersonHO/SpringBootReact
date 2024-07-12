@@ -56,8 +56,8 @@ export const ListCursosComponent = () => {
                 {cursos.map(curso => (
                     <div key={curso.id} className="card curso-card" onClick={() => handleCardClick(curso.id)}>
                         <div className="card-body curso-card-body">
-                            <div className="initials-box">{getInitials(curso.nombre)}</div>
-                            <p className="card-text">{curso.nombre}</p>
+                            <div className="initials-box">{getInitials(curso.nombre_asignatura)}</div>
+                            <p className="card-text">{curso.nombre_asignatura}</p>
                             <p className="card-text">{curso.ciclo} / {curso.horario}</p>
                         </div>
                         <div className="card-footer">
@@ -70,6 +70,7 @@ export const ListCursosComponent = () => {
                                 <div className="dropdown-menu show" aria-labelledby={`dropdownMenuButton-${curso.id}`}>
                                     <Link className="dropdown-item" to={`/edit-curso/${curso.id}`} onClick={(e) => e.stopPropagation()}>Actualizar</Link>
                                     <Link to={`/cursos/${curso.id}/alumnos`} className="dropdown-item" onClick={(e) => e.stopPropagation()}>Registro de alumnos</Link>
+                                    <Link className="dropdown-item" to={`/duplicate-curso/${curso.id}`} onClick={(e) => e.stopPropagation()}>Duplicar curso</Link>
                                     <button className="dropdown-item" onClick={() => {
                                         deleteCurso(curso.id);
                                         setDropdownId(null);

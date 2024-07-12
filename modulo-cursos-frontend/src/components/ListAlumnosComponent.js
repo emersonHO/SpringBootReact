@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 
 const ListAlumnosComponent = () => {
     const { cursoId } = useParams();
+    const [dropdownId, setDropdownId] = useState(null);
     const [alumnos, setAlumnos] = useState([]);
 
     const fetchAlumnos = useCallback(async () => {
@@ -21,11 +22,24 @@ const ListAlumnosComponent = () => {
     }, [fetchAlumnos]);
 
     const deleteAlumno = async (alumnoId) => {
-        try {
-            await AlumnoService.deleteAlumno(alumnoId);
-            fetchAlumnos();
-        } catch (error) {
-            console.error('Error deleting alumno:', error);
+        const confirm = window.confirm("¿Estás seguro de que quieres eliminar este alumno?");
+        if (confirm) {
+            try {
+                console.log(`Deleting alumno with ID: ${alumnoId}`);
+                await AlumnoService.deleteAlumno(alumnoId);
+                console.log('Alumno deleted successfully');
+                fetchAlumnos(); // Vuelve a cargar la lista después de eliminar
+            } catch (error) {
+                console.error('Error deleting alumno:', error.response ? error.response.data : error.message);
+            }
+        }
+    };
+
+      const toggleDropdown = (alumnoId) => {
+        if (dropdownId === alumnoId) {
+            setDropdownId(null);
+        } else {
+            setDropdownId(alumnoId);
         }
     };
     const handleFileUpload = async (event) => {
@@ -83,7 +97,11 @@ const ListAlumnosComponent = () => {
                             <td>{alumno.email}</td>
                             <td>
                                 <Link to={`/cursos/${cursoId}/alumnos/edit-alumno/${alumno.id}`} className="btn btn-info">Editar</Link>
-                                <button className="btn btn-danger" onClick={() => deleteAlumno(alumno.id)}>Eliminar</button>
+                                <button className="btn btn-danger" onClick={(e) => {
+                                    e.stopPropagation();
+                                    deleteAlumno(alumno.id);
+                                    setDropdownId(null);
+                                }}>Eliminar</button>
                             </td>
                         </tr>
                     ))}

@@ -3,11 +3,14 @@ package com.modulo.cursos.controller;
 import com.modulo.cursos.model.Alumno;
 import com.modulo.cursos.model.AlumnoCurso;
 import com.modulo.cursos.service.AlumnoCursoService;
+import com.modulo.cursos.service.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -16,6 +19,8 @@ public class AlumnoCursoController {
 
     @Autowired
     private AlumnoCursoService alumnoCursoService;
+    @Autowired
+    private AlumnoService alumnoService;
 
     @PostMapping("/cursos/{cursoId}/alumnos")
     public ResponseEntity<AlumnoCurso> asociarAlumnoConCurso(
@@ -30,4 +35,5 @@ public class AlumnoCursoController {
         List<Alumno> alumnos = alumnoCursoService.getAlumnosByCursoId(cursoId);
         return ResponseEntity.ok(alumnos);
     }
+
 }

@@ -34,6 +34,12 @@ public class CursosController {
         return ResponseEntity.ok(curso);
     }
 
+    @PutMapping("/cursos/{id}/duplicar")
+    public ResponseEntity<Curso> duplicarCurso(@PathVariable Long id, @RequestBody Curso cursoRequest) {
+        Curso cursoduplicado = cursoService.duplicarCurso(id, cursoRequest);
+        return ResponseEntity.ok(cursoduplicado);
+    }
+
     @PutMapping("/cursos/{id}")
     public ResponseEntity<Curso> actualizarCurso(@PathVariable Long id, @RequestBody Curso cursoRequest) {
         Curso cursoActualizado = cursoService.actualizarCurso(id, cursoRequest);
