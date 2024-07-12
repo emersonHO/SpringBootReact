@@ -28,6 +28,37 @@ const ListAlumnosComponent = () => {
             console.error('Error deleting alumno:', error);
         }
     };
+    const handleFileUpload = async (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            await AlumnoService.importarAlumnosCSV(formData);
+            fetchAlumnos();
+            alert('Archivo CSV importado correctamente.');
+        } catch (error) {
+            console.error('Error importing CSV file:', error);
+            alert('Error al importar archivo CSV.');
+        }
+    };
+
+    const handleExportAlumnos = async () => {
+        try {
+            const response = await AlumnoService.exportarAlumnosCSV();
+            const blob = new Blob([response.data], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'alumnos.csv';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Error exporting alumnos:', error);
+        }
+    };
 
     return (
         <div>
@@ -58,6 +89,15 @@ const ListAlumnosComponent = () => {
                     ))}
                 </tbody>
             </table>
+            <div className="d-flex justify-content-between align-items-center mt-3">
+                <label htmlFor="fileUpload" className="btn btn-success">
+                    Importar Alumnos CSV
+                    <input type="file" id="fileUpload" style={{ display: 'none' }} onChange={handleFileUpload} accept=".csv" />
+                </label>
+                {/* <button className="btn btn-success" onClick={handleExportAlumnos}>Exportar Alumnos CSV</button> */}
+                
+            </div>
+            <a href='http://localhost:8080/api/v1/alumnos/exportar' target='_blank'>Exportar </a>
         </div>
     );
 };

@@ -36,6 +36,23 @@ class AlumnoService {
             }
         });
     }
+    /*importarAlumnosCSV(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        return axios.post(`${ALUMNO_API_BASE_URL}/importar`, formData);
+    }
+    */
+    async exportarAlumnosCSV() {
+        // return axios.get(`${ALUMNO_API_BASE_URL}/exportar`, {
+        //     responseType: 'blob',
+        // });
+        try{
+        //    const response = await axios.get("http://localhost:8080/api/v1/alumnos/exportar")
+        }
+        catch(error){
+            console.error("Ha ocurrido un error xd",error.message)
+        }
+    }
 }
 
 const instance = new AlumnoService();
