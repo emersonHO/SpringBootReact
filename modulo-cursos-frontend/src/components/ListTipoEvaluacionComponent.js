@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import TipoEvaluacionService from '../services/TipoEvaluacionService';
+import '../styles/AddFormulaComponent.css';
 
 const ListTipoEvaluacionComponent = () => {
     const [tiposEvaluacion, setTiposEvaluacion] = useState([]);
@@ -21,7 +22,7 @@ const ListTipoEvaluacionComponent = () => {
     return (
         <div className="container">
             <h2>Tipos de Evaluación</h2>
-            <Link to="/tipoevaluacion/add" className="btn btn-primary">Añadir Tipo de Evaluación</Link>
+            <Link to="/tipoevaluacion/add" className="btn btn-primary-3">Añadir Tipo de Evaluación</Link>
             <table className="table table-striped">
                 <thead>
                     <tr>

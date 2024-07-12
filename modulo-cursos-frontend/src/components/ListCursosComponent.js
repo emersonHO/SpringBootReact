@@ -58,7 +58,7 @@ export const ListCursosComponent = () => {
                         <div className="card-body curso-card-body">
                             <div className="initials-box">{getInitials(curso.nombre_asignatura)}</div>
                             <p className="card-text">{curso.nombre_asignatura}</p>
-                            <p className="card-text">{curso.ciclo} / {curso.horario}</p>
+                            <p className="card-text">{curso.ciclo} / {curso.horas_semanales}</p>
                         </div>
                         <div className="card-footer">
                             <button className="btn btn-light" onClick={(e) => {
